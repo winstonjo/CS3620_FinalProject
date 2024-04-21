@@ -1,0 +1,37 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Recipes</h1>
+    <form method="get" action="">
+        {{ search_form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div class="list-group">
+        {% for recipe in recipes %}
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ recipe.title }}</h5>
+                <small>Cook Time: {{ recipe.cook_time }} mins</small>
+            </div>
+            <p class="mb-1">{{ recipe.description}}</p>
+            <p class="mb-1">Cuisine: {{ recipe.cuisine}}</p>
+            <small>Prep Time: {{ recipe.prep_time }} mins</small>
+            <div>
+                <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="img-fluid mt-2" style="max-height: 200px;">
+            </div>
+            <div class="mt-2">
+                <a href="{% url 'recipe_detail' recipe.pk %}" class="btn btn-info">View</a>
+                <a href="{% url 'recipe_edit' recipe.pk %}" class="btn btn-secondary">Edit</a>
+                <a href="{% url 'recipe_delete' recipe.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No recipes available.</p>
+        {% endfor %}
+        <a href="{% url 'recipe_add' %}" class="btn btn-primary mb-3">Add New Recipe</a>
+    </div>
+</div>
+{% endblock %}
+
+

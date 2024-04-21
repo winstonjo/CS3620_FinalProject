@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Comments</h2>
+    <div>
+        {% for comment in comments %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>{{ comment.author }}</strong> says:
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ comment.text }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+
+    <h3>Add a Comment</h3>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Recipe App{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .app-header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .app-logo {
+            height: 100px;
+            width: auto;
+        }
+        .app-description {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 10px 0 20px;
+        }
+        .nav-link {
+            margin-right: 10px;
+        }
+
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="app-header text-center">
+        <img src="{% static 'myapp/images/main_img.jpg' %}" alt="Recipe App Logo" class="app-logo">
+        <p class="app-description">Welcome to My Recipe App - your ultimate cookbook.</p>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" >Recipe App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipe_list' %}">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'recipe_add' %}">Create Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'comments' %}">Comments</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+     <h1>Welcome to Our Recipe Collection!</h1>
+        <p>Explore a world of flavors with our extensive database of culinary delights. Whether you're looking
+            to whip up a quick dinner or dive into the art of French cooking, our recipes are tailored to fit your needs and skill level.</p>
+
+    <div class="container mt-4">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+</body>
+</html>
+
